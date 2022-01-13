@@ -1,0 +1,1661 @@
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.15 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into dept values(1,1,1,1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | 1          | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | 1          | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update dept set dname='aaaa' where deptno=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | aaaa       | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | aaaa       | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | aaaa       | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | bbbb       | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from dept where deptno<10;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected, 1 warning (0.08 sec)
+
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> call pro16();
++------+------------+----------+--------+
+| a    | b          | c        | d      |
++------+------------+----------+--------+
+|   10 | ACCOUNTING | NEW YORK | r50mpm |
++------+------------+----------+--------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.10 sec)
+
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> call pro16();
++------+------------+----------+--------+
+| a    | b          | c        | d      |
++------+------------+----------+--------+
+|   10 | ACCOUNTING | NEW YORK | r50mpm |
++------+------------+----------+--------+
+1 row in set (0.00 sec)
+
++------+----------+--------+-----------+
+| a    | b        | c      | d         |
++------+----------+--------+-----------+
+|   20 | RESEARCH | DALLAS | a12recmpm |
++------+----------+--------+-----------+
+1 row in set (0.00 sec)
+
++------+-------+---------+------------+
+| a    | b     | c       | d          |
++------+-------+---------+------------+
+|   30 | SALES | CHICAGO | sales@2017 |
++------+-------+---------+------------+
+1 row in set (0.00 sec)
+
++------+------------+--------+---------+
+| a    | b          | c      | d       |
++------+------------+--------+---------+
+|   40 | OPERATIONS | BOSTON | opr@123 |
++------+------------+--------+---------+
+1 row in set (0.01 sec)
+
+ERROR 1329 (02000): No data - zero rows fetched, selected, or processed
+mysql> source d:\abc.sql
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'exit;
+                end if;
+        end loop;
+END' at line 8
+mysql> source d:\abc.sql
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+                end if;
+        end loop;
+END' at line 8
+mysql>
+mysql>
+mysql> source d:\abc.sql
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> call pro17();
++------+
+| x    |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    2 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    3 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    4 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|    5 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|    6 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|    7 |
++------+
+1 row in set (0.02 sec)
+
++------+
+| x    |
++------+
+|    8 |
++------+
+1 row in set (0.02 sec)
+
++------+
+| x    |
++------+
+|    9 |
++------+
+1 row in set (0.03 sec)
+
++------+
+| x    |
++------+
+|   10 |
++------+
+1 row in set (0.03 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.11 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> call pro16();
++------+------------+----------+--------+
+| a    | b          | c        | d      |
++------+------------+----------+--------+
+|   10 | ACCOUNTING | NEW YORK | r50mpm |
++------+------------+----------+--------+
+1 row in set (0.00 sec)
+
++------+----------+--------+-----------+
+| a    | b        | c      | d         |
++------+----------+--------+-----------+
+|   20 | RESEARCH | DALLAS | a12recmpm |
++------+----------+--------+-----------+
+1 row in set (0.00 sec)
+
++------+-------+---------+------------+
+| a    | b     | c       | d          |
++------+-------+---------+------------+
+|   30 | SALES | CHICAGO | sales@2017 |
++------+-------+---------+------------+
+1 row in set (0.00 sec)
+
++------+------------+--------+---------+
+| a    | b          | c      | d       |
++------+------------+--------+---------+
+|   40 | OPERATIONS | BOSTON | opr@123 |
++------+------------+--------+---------+
+1 row in set (0.01 sec)
+
+ERROR 1329 (02000): No data - zero rows fetched, selected, or processed
+mysql> call pro17();
++------+
+| x    |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    2 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    3 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    4 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    5 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|    6 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|    7 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|    8 |
++------+
+1 row in set (0.02 sec)
+
++------+
+| x    |
++------+
+|    9 |
++------+
+1 row in set (0.02 sec)
+
++------+
+| x    |
++------+
+|   10 |
++------+
+1 row in set (0.03 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.12 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> call pro17();
++------+
+| x    |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    2 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    3 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    4 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    5 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    6 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|    7 |
++------+
+1 row in set (0.02 sec)
+
++------+
+| x    |
++------+
+|    8 |
++------+
+1 row in set (0.03 sec)
+
++------+
+| x    |
++------+
+|    9 |
++------+
+1 row in set (0.03 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.11 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> call pro16();
++------+------------+----------+--------+
+| a    | b          | c        | d      |
++------+------------+----------+--------+
+|   10 | ACCOUNTING | NEW YORK | r50mpm |
++------+------------+----------+--------+
+1 row in set (0.00 sec)
+
++------+----------+--------+-----------+
+| a    | b        | c      | d         |
++------+----------+--------+-----------+
+|   20 | RESEARCH | DALLAS | a12recmpm |
++------+----------+--------+-----------+
+1 row in set (0.00 sec)
+
++------+-------+---------+------------+
+| a    | b     | c       | d          |
++------+-------+---------+------------+
+|   30 | SALES | CHICAGO | sales@2017 |
++------+-------+---------+------------+
+1 row in set (0.01 sec)
+
++------+------------+--------+---------+
+| a    | b          | c      | d       |
++------+------------+--------+---------+
+|   40 | OPERATIONS | BOSTON | opr@123 |
++------+------------+--------+---------+
+1 row in set (0.01 sec)
+
+ERROR 1329 (02000): No data - zero rows fetched, selected, or processed
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.11 sec)
+
+ERROR 1338 (42000): Cursor declaration after handler declaration
+mysql> source d:\abc.sql
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> call pro16();
++------+------------+----------+--------+
+| a    | b          | c        | d      |
++------+------------+----------+--------+
+|   10 | ACCOUNTING | NEW YORK | r50mpm |
++------+------------+----------+--------+
+1 row in set (0.00 sec)
+
++------+----------+--------+-----------+
+| a    | b        | c      | d         |
++------+----------+--------+-----------+
+|   20 | RESEARCH | DALLAS | a12recmpm |
++------+----------+--------+-----------+
+1 row in set (0.00 sec)
+
++------+-------+---------+------------+
+| a    | b     | c       | d          |
++------+-------+---------+------------+
+|   30 | SALES | CHICAGO | sales@2017 |
++------+-------+---------+------------+
+1 row in set (0.01 sec)
+
++------+------------+--------+---------+
+| a    | b          | c      | d       |
++------+------------+--------+---------+
+|   40 | OPERATIONS | BOSTON | opr@123 |
++------+------------+--------+---------+
+1 row in set (0.01 sec)
+
++-----+
+| EOF |
++-----+
+| EOF |
++-----+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.11 sec)
+
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> call pro16();
++----------+
+| sleep(5) |
++----------+
+|        0 |
++----------+
+1 row in set (5.00 sec)
+
++------+------------+----------+--------+
+| a    | b          | c        | d      |
++------+------------+----------+--------+
+|   10 | ACCOUNTING | NEW YORK | r50mpm |
++------+------------+----------+--------+
+1 row in set (5.00 sec)
+
++----------+
+| sleep(5) |
++----------+
+|        0 |
++----------+
+1 row in set (10.00 sec)
+
++------+----------+--------+-----------+
+| a    | b        | c      | d         |
++------+----------+--------+-----------+
+|   20 | RESEARCH | DALLAS | a12recmpm |
++------+----------+--------+-----------+
+1 row in set (10.00 sec)
+
++----------+
+| sleep(5) |
++----------+
+|        0 |
++----------+
+1 row in set (15.00 sec)
+
++------+-------+---------+------------+
+| a    | b     | c       | d          |
++------+-------+---------+------------+
+|   30 | SALES | CHICAGO | sales@2017 |
++------+-------+---------+------------+
+1 row in set (15.01 sec)
+
++----------+
+| sleep(5) |
++----------+
+|        0 |
++----------+
+1 row in set (20.00 sec)
+
++------+------------+--------+---------+
+| a    | b          | c      | d       |
++------+------------+--------+---------+
+|   40 | OPERATIONS | BOSTON | opr@123 |
++------+------------+--------+---------+
+1 row in set (20.01 sec)
+
++----------+
+| sleep(5) |
++----------+
+|        0 |
++----------+
+1 row in set (25.00 sec)
+
++-----+
+| EOF |
++-----+
+| EOF |
++-----+
+1 row in set (25.01 sec)
+
+Query OK, 0 rows affected (25.02 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.10 sec)
+
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> call pro16();
++-----------+
+| sleep(20) |
++-----------+
+|         0 |
++-----------+
+1 row in set (20.00 sec)
+
++------+------------+----------+--------+
+| a    | b          | c        | d      |
++------+------------+----------+--------+
+|   10 | ACCOUNTING | NEW YORK | r50mpm |
++------+------------+----------+--------+
+1 row in set (20.00 sec)
+
++------+----------+--------+-----------+
+| a    | b        | c      | d         |
++------+----------+--------+-----------+
+|   20 | RESEARCH | DALLAS | a12recmpm |
++------+----------+--------+-----------+
+1 row in set (20.01 sec)
+
++------+-------+---------+------------+
+| a    | b     | c       | d          |
++------+-------+---------+------------+
+|   30 | SALES | CHICAGO | sales@2017 |
++------+-------+---------+------------+
+1 row in set (20.01 sec)
+
++------+------------+--------+---------+
+| a    | b          | c      | d       |
++------+------------+--------+---------+
+|   40 | OPERATIONS | BOSTON | opr@123 |
++------+------------+--------+---------+
+1 row in set (20.02 sec)
+
++-----+
+| EOF |
++-----+
+| EOF |
++-----+
+1 row in set (20.03 sec)
+
+Query OK, 0 rows affected (20.05 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> call pro16();
++-----------+
+| sleep(20) |
++-----------+
+|         0 |
++-----------+
+1 row in set (20.00 sec)
+
++------+------------+----------+--------+
+| a    | b          | c        | d      |
++------+------------+----------+--------+
+|   10 | ACCOUNTING | NEW YORK | r50mpm |
++------+------------+----------+--------+
+1 row in set (20.00 sec)
+
++------+----------+--------+-----------+
+| a    | b        | c      | d         |
++------+----------+--------+-----------+
+|   20 | RESEARCH | DALLAS | a12recmpm |
++------+----------+--------+-----------+
+1 row in set (20.01 sec)
+
++------+-------+---------+------------+
+| a    | b     | c       | d          |
++------+-------+---------+------------+
+|   30 | SALES | CHICAGO | sales@2017 |
++------+-------+---------+------------+
+1 row in set (20.01 sec)
+
++------+------------+--------+---------+
+| a    | b          | c      | d       |
++------+------------+--------+---------+
+|   40 | OPERATIONS | BOSTON | opr@123 |
++------+------------+--------+---------+
+1 row in set (20.02 sec)
+
++-----+
+| EOF |
++-----+
+| EOF |
++-----+
+1 row in set (20.03 sec)
+
+Query OK, 0 rows affected (20.04 sec)
+
+mysql> call pro16();
++-----------+
+| sleep(20) |
++-----------+
+|         0 |
++-----------+
+1 row in set (20.00 sec)
+
++------+------------+----------+--------+
+| a    | b          | c        | d      |
++------+------------+----------+--------+
+|   10 | ACCOUNTING | NEW YORK | r50mpm |
++------+------------+----------+--------+
+1 row in set (20.00 sec)
+
++------+----------+--------+-----------+
+| a    | b        | c      | d         |
++------+----------+--------+-----------+
+|   20 | RESEARCH | DALLAS | a12recmpm |
++------+----------+--------+-----------+
+1 row in set (20.01 sec)
+
++------+-------+---------+------------+
+| a    | b     | c       | d          |
++------+-------+---------+------------+
+|   30 | SALES | CHICAGO | sales@2017 |
++------+-------+---------+------------+
+1 row in set (20.01 sec)
+
++------+------------+--------+---------+
+| a    | b          | c      | d       |
++------+------------+--------+---------+
+|   40 | OPERATIONS | BOSTON | opr@123 |
++------+------------+--------+---------+
+1 row in set (20.02 sec)
+
++-----+
+| EOF |
++-----+
+| EOF |
++-----+
+1 row in set (20.03 sec)
+
+Query OK, 0 rows affected (20.04 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
++--------+------------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     41 | 41         | 41       | 41         |
++--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> desc customer;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| CUSTID      | int(11)     | NO   | PRI | NULL    |       |
+| NAME        | varchar(45) | YES  |     | NULL    |       |
+| ADDRESS     | varchar(40) | YES  |     | NULL    |       |
+| CITY        | varchar(30) | YES  |     | NULL    |       |
+| STATE       | varchar(2)  | YES  |     | NULL    |       |
+| ZIP         | varchar(9)  | YES  |     | NULL    |       |
+| AREA        | int(11)     | YES  |     | NULL    |       |
+| PHONE       | varchar(9)  | YES  |     | NULL    |       |
+| REPID       | int(11)     | NO   |     | NULL    |       |
+| CREDITLIMIT | float(9,2)  | YES  |     | NULL    |       |
+| COMMENTS    | text        | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+11 rows in set (0.09 sec)
+
+mysql> select custid,name customer;
+ERROR 1054 (42S22): Unknown column 'custid' in 'field list'
+mysql> select custid,name from customer;
++--------+----------------------------------------------+
+| custid | name                                         |
++--------+----------------------------------------------+
+|    100 | JOCKSPORTS                                   |
+|    101 | TKB SPORT SHOP                               |
+|    102 | VOLLYRITE                                    |
+|    103 | JUST TENNIS                                  |
+|    104 | EVERY MOUNTAIN                               |
+|    105 | K + T SPORTS                                 |
+|    106 | SHAPE UP                                     |
+|    107 | WOMENS SPORTS                                |
+|    108 | NORTH WOODS HEALTH AND FITNESS SUPPLY CENTER |
++--------+----------------------------------------------+
+9 rows in set (0.05 sec)
+
+mysql> select custid,name from customers;
+ERROR 1054 (42S22): Unknown column 'custid' in 'field list'
+mysql> select cnum,name from customers;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> desc customers;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| CNUM   | int(11)     | NO   | PRI | NULL    |       |
+| CNAME  | varchar(10) | YES  |     | NULL    |       |
+| CITY   | varchar(10) | YES  |     | NULL    |       |
+| RATING | float       | YES  |     | NULL    |       |
+| SNUM   | int(11)     | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select cnum,cname from customers;
++------+---------+
+| cnum | cname   |
++------+---------+
+| 2001 | Santosh |
+| 2002 | Joe     |
+| 2003 | Raj     |
+| 2004 | Grass   |
+| 2006 | Raja    |
+| 2007 | Jackson |
+| 2008 | William |
+| 2009 | Smith   |
+| 2010 | ADAMS   |
++------+---------+
+9 rows in set (0.11 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.23 sec)
+
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> call pro17(2001);
++------+---------+
+| cnum | cname   |
++------+---------+
+| 2001 | Santosh |
+| 2002 | Joe     |
+| 2003 | Raj     |
+| 2004 | Grass   |
+| 2006 | Raja    |
+| 2007 | Jackson |
+| 2008 | William |
+| 2009 | Smith   |
+| 2010 | ADAMS   |
++------+---------+
+9 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.11 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> call pro17(2001);
++------+---------+
+| cnum | cname   |
++------+---------+
+| 2001 | Santosh |
++------+---------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc ord;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| ORDID     | int(11)     | NO   | PRI | NULL    |       |
+| ORDERDATE | datetime    | YES  |     | NULL    |       |
+| COMMPLAN  | varchar(1)  | YES  |     | NULL    |       |
+| CUSTID    | int(11)     | NO   | MUL | NULL    |       |
+| SHIPDATE  | datetime    | YES  |     | NULL    |       |
+| STATUS    | varchar(45) | YES  |     | NULL    |       |
+| TOTAL     | float(8,2)  | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> select orders;
+ERROR 1054 (42S22): Unknown column 'orders' in 'field list'
+mysql> desc  orders;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| ONUM  | int(11)  | NO   | PRI | NULL    |       |
+| AMT   | float    | YES  |     | NULL    |       |
+| ODATE | datetime | YES  |     | NULL    |       |
+| CNUM  | int(11)  | YES  | MUL | NULL    |       |
+| SNUM  | int(11)  | YES  | MUL | NULL    |       |
++-------+----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select onum from orders where cnum=2001;
++------+
+| onum |
++------+
+| 3003 |
+| 3017 |
+| 3049 |
+| 4012 |
+| 4021 |
+| 5011 |
+| 6501 |
++------+
+7 rows in set (0.06 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.10 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'declare c1 cursor for select * from orders where cnum=custID;
+        ELSE
+                select "cu' at line 7
+mysql> desc orders;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| ONUM  | int(11)  | NO   | PRI | NULL    |       |
+| AMT   | float    | YES  |     | NULL    |       |
+| ODATE | datetime | YES  |     | NULL    |       |
+| CNUM  | int(11)  | YES  | MUL | NULL    |       |
+| SNUM  | int(11)  | YES  | MUL | NULL    |       |
++-------+----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select onum, amt, cnum from orders;
++------+---------+------+
+| onum | amt     | cnum |
++------+---------+------+
+| 3001 |   18.69 | 2008 |
+| 3002 |  1900.1 | 2007 |
+| 3003 |  767.19 | 2001 |
+| 3005 | 5160.45 | 2003 |
+| 3006 | 1098.16 | 2008 |
+| 3007 |   75.75 | 2002 |
+| 3008 |    4723 | 2006 |
+| 3009 | 1713.23 | 2002 |
+| 3010 | 1309.95 | 2004 |
+| 3011 | 9891.88 | 2006 |
+| 3012 | 3455.78 | 2002 |
+| 3013 | 1245.98 | 2002 |
+| 3014 | 3721.53 | 2006 |
+| 3015 |   734.5 | 2004 |
+| 3016 | 1729.67 | 2006 |
+| 3017 |   18.69 | 2001 |
+| 3018 |  767.19 | 2002 |
+| 3019 |  1900.1 | 2007 |
+| 3020 | 5160.45 | 2003 |
+| 3021 | 1098.16 | 2008 |
+| 3022 | 1713.23 | 2002 |
+| 3023 |   75.75 | 2002 |
+| 3024 |    4723 | 2006 |
+| 3025 | 1309.95 | 2002 |
+| 3026 | 9891.88 | 2006 |
+| 3027 | 3455.78 | 2002 |
+| 3028 | 1245.98 | 2002 |
+| 3029 | 3721.53 | 2006 |
+| 3030 |   734.5 | 2004 |
+| 3031 | 1729.67 | 2006 |
+| 3032 |    3434 | 2006 |
+| 3033 |     522 | 2002 |
+| 3049 |     500 | 2001 |
+| 3074 |     457 | 2008 |
+| 3119 |     125 | 2007 |
+| 4001 |     145 | 2008 |
+| 4012 |     245 | 2001 |
+| 4021 |     600 | 2001 |
+| 4054 |    1200 | 2004 |
+| 5011 |     138 | 2001 |
+| 5014 |     980 | 2002 |
+| 5015 |    2133 | 2004 |
+| 5053 |    1500 | 2006 |
+| 5099 |     790 | 2002 |
+| 6501 |     125 | 2001 |
+| 6502 |     535 | 2006 |
+| 6503 |    1100 | 2006 |
+| 6504 |    1350 | 2008 |
++------+---------+------+
+48 rows in set (0.01 sec)
+
+mysql> select onum, amt, cnum from orders where cnum=2001;
++------+--------+------+
+| onum | amt    | cnum |
++------+--------+------+
+| 3003 | 767.19 | 2001 |
+| 3017 |  18.69 | 2001 |
+| 3049 |    500 | 2001 |
+| 4012 |    245 | 2001 |
+| 4021 |    600 | 2001 |
+| 5011 |    138 | 2001 |
+| 6501 |    125 | 2001 |
++------+--------+------+
+7 rows in set (0.00 sec)
+
+mysql> source d:\abc.sql
+ERROR 1305 (42000): PROCEDURE demo.pro17 does not exist
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.15 sec)
+
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> call pro17(2001);
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 3003.00 | 767.19 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.11 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> call pro17(2001);
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 3003.00 | 767.19 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.00 sec)
+
++---------+-------+---------+
+| a       | b     | c       |
++---------+-------+---------+
+| 3017.00 | 18.69 | 2001.00 |
++---------+-------+---------+
+1 row in set (0.00 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 3049.00 | 500.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.00 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 4012.00 | 245.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.01 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 4021.00 | 600.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.01 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 5011.00 | 138.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.02 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 6501.00 | 125.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.02 sec)
+
+ERROR 1329 (02000): No data - zero rows fetched, selected, or processed
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.10 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> call pro17(-1);
++--------------------+
+| customer not found |
++--------------------+
+| customer not found |
++--------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call pro17(2001);
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 3003.00 | 767.19 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.00 sec)
+
++---------+-------+---------+
+| a       | b     | c       |
++---------+-------+---------+
+| 3017.00 | 18.69 | 2001.00 |
++---------+-------+---------+
+1 row in set (0.00 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 3049.00 | 500.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.01 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 4012.00 | 245.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.01 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 4021.00 | 600.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.01 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 5011.00 | 138.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.02 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 6501.00 | 125.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.02 sec)
+
++-----+
+| EOF |
++-----+
+| EOF |
++-----+
+1 row in set (0.03 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.10 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> call pro17(2001);
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 3003.00 | 767.19 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.00 sec)
+
++---------+-------+---------+
+| a       | b     | c       |
++---------+-------+---------+
+| 3017.00 | 18.69 | 2001.00 |
++---------+-------+---------+
+1 row in set (0.00 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 3049.00 | 500.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.01 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 4012.00 | 245.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.01 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 4021.00 | 600.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.01 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 5011.00 | 138.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.02 sec)
+
++---------+--------+---------+
+| a       | b      | c       |
++---------+--------+---------+
+| 6501.00 | 125.00 | 2001.00 |
++---------+--------+---------+
+1 row in set (0.02 sec)
+
++-----+
+| EOF |
++-----+
+| EOF |
++-----+
+1 row in set (0.03 sec)
+
++-------------+
+| Hello World |
++-------------+
+| Hello World |
++-------------+
+1 row in set (0.03 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> SELECT * FROM DEPT;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     41 | 41         | 41       | 41         |
++--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SOURCE D:\ABC.SQL
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+ERROR 1415 (0A000): Not allowed to return a result set from a trigger
+mysql> DESC DEPT;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| DEPTNO | int(11)     | NO   | PRI | NULL    |       |
+| DNAME  | varchar(12) | YES  |     | NULL    |       |
+| LOC    | varchar(10) | YES  |     | NULL    |       |
+| PWD    | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> DROP TABLE D;
+Query OK, 0 rows affected (0.67 sec)
+
+mysql> SELECT * FROM DEPT;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     41 | 41         | 41       | 41         |
++--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE D LIKE DEPT;
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> SELECT * FROM D;
+Empty set (0.00 sec)
+
+mysql> DESC D;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| DEPTNO | int(11)     | NO   | PRI | NULL    |       |
+| DNAME  | varchar(12) | YES  |     | NULL    |       |
+| LOC    | varchar(10) | YES  |     | NULL    |       |
+| PWD    | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> INSERT INTO DEPT VALUES(42, 'HRD','BARODA','PASS');
+Query OK, 1 row affected (0.03 sec)
+
+mysql>
+mysql>
+mysql> SELECT * FROM DEPT;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     41 | 41         | 41       | 41         |
+|     42 | HRD        | BARODA   | PASS       |
++--------+------------+----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+
+| DEPTNO | DNAME | LOC    | PWD  |
++--------+-------+--------+------+
+|     42 | HRD   | BARODA | PASS |
++--------+-------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> alter table d add (iDate date, iTime time, user varhar(30));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varhar(30))' at line 1
+mysql> alter table d add (iDate date, iTime time, user varchar(30));
+Query OK, 0 rows affected (0.38 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc d;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| DEPTNO | int(11)     | NO   | PRI | NULL    |       |
+| DNAME  | varchar(12) | YES  |     | NULL    |       |
+| LOC    | varchar(10) | YES  |     | NULL    |       |
+| PWD    | varchar(20) | YES  |     | NULL    |       |
+| iDate  | date        | YES  |     | NULL    |       |
+| iTime  | time        | YES  |     | NULL    |       |
+| user   | varchar(30) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> show user;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'user' at line 1
+mysql> show users;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'users' at line 1
+mysql> show user();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'user()' at line 1
+mysql> select user();
++----------------+
+| user()         |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.10 sec)
+
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     41 | 41         | 41       | 41         |
+|     42 | HRD        | BARODA   | PASS       |
++--------+------------+----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into dept values(1,1,1,1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | 1          | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     41 | 41         | 41       | 41         |
+|     42 | HRD        | BARODA   | PASS       |
++--------+------------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from d;
++--------+-------+--------+------+------------+----------+----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user           |
++--------+-------+--------+------+------------+----------+----------------+
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL           |
++--------+-------+--------+------+------------+----------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> \s
+--------------
+mysql  Ver 8.0.15 for Win64 on x86_64 (MySQL Community Server - GPL)
+
+Connection id:          19
+Current database:       demo
+Current user:           root@localhost
+SSL:                    Cipher in use is DHE-RSA-AES128-GCM-SHA256
+Using delimiter:        ;
+Server version:         8.0.15 MySQL Community Server - GPL
+Protocol version:       10
+Connection:             localhost via TCP/IP
+Server characterset:    utf8mb4
+Db     characterset:    utf8mb4
+Client characterset:    cp850
+Conn.  characterset:    cp850
+TCP port:               3307
+Uptime:                 3 days 23 hours 39 min 55 sec
+
+Threads: 2  Questions: 1609  Slow queries: 5  Opens: 500  Flush tables: 2  Open tables: 393  Queries per second avg: 0.004
+--------------
+
+mysql> source d:\abc.sql
+Query OK, 0 rows affected (0.18 sec)
+
+Query OK, 0 rows affected (0.11 sec)
+
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> SELECT * FROM DEPT;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | 1          | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     41 | 41         | 41       | 41         |
+|     42 | HRD        | BARODA   | PASS       |
++--------+------------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+------------+----------+----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user           |
++--------+-------+--------+------+------------+----------+----------------+
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL           |
++--------+-------+--------+------+------------+----------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> DELETE FROM DEPT WHERE DEPTNO=41;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM DEPT;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | 1          | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     42 | HRD        | BARODA   | PASS       |
++--------+------------+----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+------------+----------+----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user           |
++--------+-------+--------+------+------------+----------+----------------+
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost |
+|     41 | 41    | 41     | 41   | 2021-12-11 | 12:03:15 | root@localhost |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL           |
++--------+-------+--------+------+------------+----------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into dept values(1,1,1,1);
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+mysql> insert into dept values(2,1,1,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into dept values(3,1,1,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into dept values(4,1,1,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM DEPT;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | 1          | 1        | 1          |
+|      2 | 1          | 1        | 1          |
+|      3 | 1          | 1        | 1          |
+|      4 | 1          | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     42 | HRD        | BARODA   | PASS       |
++--------+------------+----------+------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+------------+----------+----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user           |
++--------+-------+--------+------+------------+----------+----------------+
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost |
+|      2 | 1     | 1      | 1    | 2021-12-11 | 12:06:37 | root@localhost |
+|      3 | 1     | 1      | 1    | 2021-12-11 | 12:06:40 | root@localhost |
+|      4 | 1     | 1      | 1    | 2021-12-11 | 12:06:42 | root@localhost |
+|     41 | 41    | 41     | 41   | 2021-12-11 | 12:03:15 | root@localhost |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL           |
++--------+-------+--------+------+------------+----------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM DEPT;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | 1          | 1        | 1          |
+|      2 | 1          | 1        | 1          |
+|      3 | 1          | 1        | 1          |
+|      4 | 1          | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     42 | HRD        | BARODA   | PASS       |
++--------+------------+----------+------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+------------+----------+----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user           |
++--------+-------+--------+------+------------+----------+----------------+
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost |
+|      2 | 1     | 1      | 1    | 2021-12-11 | 12:06:37 | root@localhost |
+|      3 | 1     | 1      | 1    | 2021-12-11 | 12:06:40 | root@localhost |
+|      4 | 1     | 1      | 1    | 2021-12-11 | 12:06:42 | root@localhost |
+|     41 | 41    | 41     | 41   | 2021-12-11 | 12:03:15 | root@localhost |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL           |
++--------+-------+--------+------+------------+----------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+------------+----------+----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user           |
++--------+-------+--------+------+------------+----------+----------------+
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost |
+|      2 | 1     | 1      | 1    | 2021-12-11 | 12:06:37 | root@localhost |
+|      3 | 1     | 1      | 1    | 2021-12-11 | 12:06:40 | root@localhost |
+|      4 | 1     | 1      | 1    | 2021-12-11 | 12:06:42 | root@localhost |
+|     41 | 41    | 41     | 41   | 2021-12-11 | 12:03:15 | root@localhost |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL           |
++--------+-------+--------+------+------------+----------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM DEPT;
++--------+------------+----------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        |
++--------+------------+----------+------------+
+|      1 | 1          | 1        | 1          |
+|      2 | 1          | 1        | 1          |
+|      3 | 1          | 1        | 1          |
+|      4 | 1          | 1        | 1          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  |
+|     30 | SALES      | CHICAGO  | sales@2017 |
+|     40 | OPERATIONS | BOSTON   | opr@123    |
+|     42 | HRD        | BARODA   | PASS       |
++--------+------------+----------+------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+------------+----------+----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user           |
++--------+-------+--------+------+------------+----------+----------------+
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost |
+|      2 | 1     | 1      | 1    | 2021-12-11 | 12:06:37 | root@localhost |
+|      3 | 1     | 1      | 1    | 2021-12-11 | 12:06:40 | root@localhost |
+|      4 | 1     | 1      | 1    | 2021-12-11 | 12:06:42 | root@localhost |
+|     41 | 41    | 41     | 41   | 2021-12-11 | 12:03:15 | root@localhost |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL           |
++--------+-------+--------+------+------------+----------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+------------+----------+----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user           |
++--------+-------+--------+------+------------+----------+----------------+
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost |
+|      2 | 1     | 1      | 1    | 2021-12-11 | 12:06:37 | root@localhost |
+|      3 | 1     | 1      | 1    | 2021-12-11 | 12:06:40 | root@localhost |
+|      4 | 1     | 1      | 1    | 2021-12-11 | 12:06:42 | root@localhost |
+|     41 | 41    | 41     | 41   | 2021-12-11 | 12:03:15 | root@localhost |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL           |
++--------+-------+--------+------+------------+----------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+------------+----------+----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user           |
++--------+-------+--------+------+------------+----------+----------------+
+|     -1 | -1    | -1     | -1   | 2021-12-11 | 12:08:50 | root@localhost |
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost |
+|      2 | 1     | 1      | 1    | 2021-12-11 | 12:06:37 | root@localhost |
+|      3 | 1     | 1      | 1    | 2021-12-11 | 12:06:40 | root@localhost |
+|      4 | 1     | 1      | 1    | 2021-12-11 | 12:06:42 | root@localhost |
+|     41 | 41    | 41     | 41   | 2021-12-11 | 12:03:15 | root@localhost |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL           |
++--------+-------+--------+------+------------+----------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> grant insert on dept to omkar;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM D;
++--------+-------+--------+------+------------+----------+-----------------+
+| DEPTNO | DNAME | LOC    | PWD  | iDate      | iTime    | user            |
++--------+-------+--------+------+------------+----------+-----------------+
+|     -7 | 1     | 1      | 1    | 2021-12-11 | 12:18:36 | omkar@localhost |
+|     -1 | -1    | -1     | -1   | 2021-12-11 | 12:08:50 | root@localhost  |
+|      1 | 1     | 1      | 1    | 2021-12-11 | 11:54:31 | root@localhost  |
+|      2 | 1     | 1      | 1    | 2021-12-11 | 12:06:37 | root@localhost  |
+|      3 | 1     | 1      | 1    | 2021-12-11 | 12:06:40 | root@localhost  |
+|      4 | 1     | 1      | 1    | 2021-12-11 | 12:06:42 | root@localhost  |
+|     41 | 41    | 41     | 41   | 2021-12-11 | 12:03:15 | root@localhost  |
+|     42 | HRD   | BARODA | PASS | NULL       | NULL     | NULL            |
++--------+-------+--------+------+------------+----------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql>
